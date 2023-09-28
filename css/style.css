@@ -1,0 +1,1096 @@
+html, body {
+	height:100%;
+}
+
+body {
+	background-image: url(../img/elements/backgroung.jpg);
+	color: #fff;
+	font-family: Nunito;
+	height: 100%;
+	width: 100%;
+}
+
+/* menu */
+.dropdown-toggle::after {display: none;}
+#dropdownMenu1 {background: transparent;border: transparent;}
+.dropdown-menu {
+	background-color: rgba(21, 132, 200, 0.2);
+	min-width: 115px;
+	border-radius: 10px;
+}
+.btn.focus, .btn:focus {box-shadow: unset;}
+.fa, .fas {color: #fff;}
+.navbar-light .navbar-toggler-icon {
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+.navbar-light .navbar-toggler, .navbar-toggler:focus, .navbar-toggler:active, .navbar-toggler-icon:focus {
+	border: transparent;
+	outline: none;
+    box-shadow: none;
+}
+/* Preloader */
+.preloader{
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background: #e0e0e0;
+	z-index: 1001;
+}
+.preloader img {
+	width:30px;
+	height:30px;
+}
+.preloader img{
+	position: absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%,-50%);
+	animation: ro 1s infinite;
+}
+@keyframes ro {
+	0%{
+		transform: translate(-50%,-50%) rotate(0deg);
+	}
+	50%{
+		transform: translate(-50%,-50%) rotate(360deg);
+	}
+	100%{
+		transform: translate(-50%,-50%) rotate(-360deg);
+	}
+}
+.loaded_hiding .preloader {
+	transition: 0.3s opacity;
+	opacity: 0;
+}
+
+.loaded .preloader {
+	display: none;
+}
+
+/* Navbar toggle */
+.navbar-toggler:focus,
+.navbar-toggler:active {
+    outline: 0;
+}
+
+.navbar-toggler span {
+	border-right: 3px; 
+	display: block;
+	background-color: #fff;
+	height: 3px;
+ 	width: 25px;
+	margin-top: 4px;
+	margin-bottom: 4px;
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transform: rotate(0deg);
+	position: relative;
+	left: 0;
+	opacity: 1;
+}
+
+.navbar-toggler span:nth-child(1),
+.navbar-toggler span:nth-child(3) {
+	-webkit-transition: transform .35s ease-in-out;
+	-moz-transition: transform .35s ease-in-out;
+	-o-transition: transform .35s ease-in-out;
+	transition: transform .35s ease-in-out;
+}
+
+.navbar-toggler:not(.collapsed) span:nth-child(1) {
+	position: absolute;
+	left: 12px;
+	top: 10px;
+	-webkit-transform: rotate(135deg);
+	-moz-transform: rotate(135deg);
+	-o-transform: rotate(135deg);
+	transform: rotate(135deg);
+	opacity: 0.9;
+}
+
+.navbar-toggler:not(.collapsed) span:nth-child(2) {
+	height: 12px;
+	visibility: hidden;
+	background-color: transparent;
+}
+
+.navbar-toggler:not(.collapsed) span:nth-child(3) {
+	position: absolute;
+	left: 12px;
+	top: 10px;
+	-webkit-transform: rotate(-135deg);
+	-moz-transform: rotate(-135deg);
+	-o-transform: rotate(-135deg);
+	transform: rotate(-135deg);
+	opacity: 0.9;
+}
+/* Prices */
+
+.fa-check {color: rgba(54, 162, 53, 1);}
+.fa-times {color: rgba(255, 0, 0, 0.75);}
+
+/* 1 */
+/* Sumsung 5760 x 2160*/
+/* TV - 3840x2160 7680x4320 */
+@media (min-width: 3840px) {
+	h1 {font-size: 35px;} h2 { font-size: 20px;text-transform: uppercase;} h3 { font-size: 18px;}
+	h1, h2, h3 { font-weight: normal;}
+
+	.container {
+		height: 96%;
+	}
+
+	/* Navbar */
+	.bg-light{
+		background-color: transparent!important;
+		height: 7%;
+	}
+
+	.navbar-light .navbar-brand, .navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:active {
+		color: #fff;
+	}
+
+	.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+		color: #fff;
+	}
+
+	.navbar-light .navbar-nav .nav-link, .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:active {
+		color: #fff;
+	}
+
+	.navbar-light .navbar-nav .nav-link {
+		color: #fff!important;
+	}
+
+	/* Carousel */
+
+	.carousel {
+		height: 100%;
+	}
+
+	.carousel-inner {
+		height: 90%;
+		/*vertical-align: middle;*/
+		/*display: table-cell;*/
+	}
+
+	#head {transform: translateY(40%);}
+	#services, #portfolio {transform: translateY(10%);}
+	#prices {transform: translateY(5%);}
+	#contacts, #login {transform: translateY(60%);}
+
+	.carousel-indicators .active {
+		border-bottom: 1px solid #fff;
+		background-color: transparent;
+	}
+
+	.carousel-indicators {
+		position: inherit;
+		margin-right: 0;
+	}
+
+	.carousel-indicators li {
+		width: 100px;
+		text-indent: 0;
+		text-align: center;
+		height: 40px;
+		background-color: transparent;
+	}
+	
+	/* Head */
+	
+	#head-1, #head-2 {
+		height:100%;
+	}
+
+	#head-3 {
+		vertical-align: middle;
+	    transform: translateY(120%);
+	    top: 45%;
+	}
+	
+	/* Services */
+
+	.card {
+		background-color: rgba(0, 0, 0, 0.2);
+		border: transparent;
+		width: 100%!important;
+		text-align: center;
+		border-radius: 10px;
+		padding: 20px 0;
+		margin-bottom: 10px;
+	}
+
+	.card img {
+		border-radius: 10px;
+		width: 50px;
+		height: 50px;
+		margin: 10px 0 10px;
+		padding: 10px;
+	}
+
+	.card .btn {
+		margin-top: 10px;
+	}
+
+	#data img {background: rgba(254, 121, 21, 0.7);}
+	#analytics img {background: rgba(21, 132, 200, 0.7);}
+	#visual img {background: rgba(54, 162, 53, 0.7);}
+
+	#data {background-color: rgba(254, 121, 21, 0.2);}
+	#analytics {background-color: rgba(21, 132, 200, 0.2);}
+	#visual {background-color: rgba(54, 162, 53, 0.2);}
+
+	.card-body {
+		padding: 0;
+		opacity: 0.85;
+	}
+
+	.list-group-flush .list-group-item {
+		background-color: transparent;	
+		border-bottom: 1px solid;
+	}
+
+	.list-group-item {
+		padding: 0;
+		border: 0;
+		text-align: left;
+		margin: 0 20px 0 20px;
+	}
+
+	/* Portfolio */
+	#portfolio img {
+		width: 350px;
+		height: 250px;
+		margin: 0 0 20px 0;
+		border-radius: 10px;
+		opacity: 0.7;
+	}
+
+	.lg-backdrop {
+		background-color: transparent;
+	}
+
+	.lg-img-wrap img {
+		border-radius: 10px;
+	}
+
+	/*.lg-toolbar .lg-icon, .lg-actions .lg-next, .lg-actions .lg-prev {
+		border-radius: 10px;
+	}*/
+
+	/* Prices */
+	#free img {background: rgba(254, 121, 21, 0.7);}
+	#standart img {background: rgba(21, 132, 200, 0.7);}
+	#personal img {background: rgba(54, 162, 53, 0.7);}
+
+	#free {background-color: rgba(254, 121, 21, 0.2);}
+	#standart {background-color: rgba(21, 132, 200, 0.2);}
+	#personal {background-color: rgba(54, 162, 53, 0.2);}
+
+	/*#prices .card-title {
+		margin: 20px 0;
+	}*/
+
+	.img-thumbnail {
+		padding: 0;
+		border: 0;
+		opacity: 0.7;
+	}
+
+	#unsel {
+		color: #A0A0A0;
+	}
+
+	/* Contacts */
+	form {
+		background-color: rgba(0, 0, 0, 0.2);
+		border-radius: 10px;
+		padding: 20px;
+	}
+
+	/* Footer */
+	footer {
+		height: 3%;
+		text-align: center;
+	}
+}
+
+/* TV - 1920x1080 2048x1080 */
+/* PC - 1920x1080 1920x1200 */
+@media (min-width: 1920px) and (max-width:3839px) {
+	h1 {font-size: 35px;} h2 { font-size: 20px;text-transform: uppercase;} h3 { font-size: 18px;}
+	h1, h2, h3 { font-weight: normal;}
+
+	.container {
+		height: 96%;
+	}
+
+	/* Navbar */
+	.bg-light{
+		background-color: transparent!important;
+		height: 7%;
+	}
+
+	.navbar-light .navbar-brand, .navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:active {
+		color: #fff;
+	}
+
+	.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+		color: #fff;
+	}
+
+	.navbar-light .navbar-nav .nav-link, .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:active {
+		color: #fff;
+	}
+
+	.navbar-light .navbar-nav .nav-link {
+		color: #fff!important;
+	}
+
+	/* Carousel */
+
+	.carousel {
+		height: 100%;
+	}
+
+	.carousel-inner {
+		height: 90%;
+		/*vertical-align: middle;*/
+		/*display: table-cell;*/
+	}
+
+	#head {transform: translateY(40%);}
+	#services, #portfolio {transform: translateY(10%);}
+	#prices {transform: translateY(5%);}
+	#contacts, #login {transform: translateY(60%);}
+
+	.carousel-indicators .active {
+		border-bottom: 1px solid #fff;
+		background-color: transparent;
+	}
+
+	.carousel-indicators {
+		position: inherit;
+		margin-right: 0;
+	}
+
+	.carousel-indicators li {
+		width: 100px;
+		text-indent: 0;
+		text-align: center;
+		height: 40px;
+		background-color: transparent;
+	}
+	
+	/* Head */
+	
+	#head-1, #head-2 {
+		height:100%;
+	}
+
+	#head-3 {
+		vertical-align: middle;
+	    transform: translateY(120%);
+	    top: 45%;
+	}
+	
+	/* Services */
+
+	.card {
+		background-color: rgba(0, 0, 0, 0.2);
+		border: transparent;
+		width: 100%!important;
+		text-align: center;
+		border-radius: 10px;
+		padding: 20px 0;
+		margin-bottom: 10px;
+	}
+
+	.card img {
+		border-radius: 10px;
+		width: 50px;
+		height: 50px;
+		margin: 10px 0 10px;
+		padding: 10px;
+	}
+
+	.card .btn {
+		margin-top: 10px;
+	}
+
+	#data img {background: rgba(254, 121, 21, 0.7);}
+	#analytics img {background: rgba(21, 132, 200, 0.7);}
+	#visual img {background: rgba(54, 162, 53, 0.7);}
+
+	#data {background-color: rgba(254, 121, 21, 0.2);}
+	#analytics {background-color: rgba(21, 132, 200, 0.2);}
+	#visual {background-color: rgba(54, 162, 53, 0.2);}
+
+	.card-body {
+		padding: 0;
+		opacity: 0.85;
+	}
+
+	.list-group-flush .list-group-item {
+		background-color: transparent;	
+		border-bottom: 1px solid;
+	}
+
+	.list-group-item {
+		padding: 0;
+		border: 0;
+		text-align: left;
+		margin: 0 20px 0 20px;
+	}
+
+	/* Portfolio */
+	#portfolio img {
+		width: 350px;
+		height: 250px;
+		margin: 0 0 20px 0;
+		border-radius: 10px;
+		opacity: 0.7;
+	}
+
+	.lg-backdrop {
+		background-color: transparent;
+	}
+
+	.lg-img-wrap img {
+		border-radius: 10px;
+	}
+
+	/*.lg-toolbar .lg-icon, .lg-actions .lg-next, .lg-actions .lg-prev {
+		border-radius: 10px;
+	}*/
+
+	/* Prices */
+	#free img {background: rgba(254, 121, 21, 0.7);}
+	#standart img {background: rgba(21, 132, 200, 0.7);}
+	#personal img {background: rgba(54, 162, 53, 0.7);}
+
+	#free {background-color: rgba(254, 121, 21, 0.2);}
+	#standart {background-color: rgba(21, 132, 200, 0.2);}
+	#personal {background-color: rgba(54, 162, 53, 0.2);}
+
+	/*#prices .card-title {
+		margin: 20px 0;
+	}*/
+
+	.img-thumbnail {
+		padding: 0;
+		border: 0;
+		opacity: 0.7;
+	}
+
+	#unsel {
+		color: #A0A0A0;
+	}
+
+	/* Contacts */
+	form {
+		background-color: rgba(0, 0, 0, 0.2);
+		border-radius: 10px;
+		padding: 20px;
+	}
+
+	/* Footer */
+	footer {
+		height: 3%;
+		text-align: center;
+	}
+}
+
+/* Large desktops and laptops 1583-750 */ 
+/* PC - 1024x600 1024x768 1280x800 1366x768 1440x900 1600x900 1680x1050 */
+/* Tablet - 1280x800 1366x1024 1440x1024 */
+/* TV - 1280x720 */
+@media (min-width: 1200px) and (max-width:1919px) {
+	h1 {font-size: 35px;} h2 { font-size: 20px;text-transform: uppercase;} h3 { font-size: 18px;}
+	h1, h2, h3 { font-weight: normal;}
+
+	.container {
+		height: 96%;
+	}
+
+	/* Navbar */
+	.bg-light{
+		background-color: transparent!important;
+		height: 7%;
+	}
+
+	.navbar-light .navbar-brand, .navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:active {
+		color: #fff;
+	}
+
+	.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+		color: #fff;
+	}
+
+	.navbar-light .navbar-nav .nav-link, .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:active {
+		color: #fff;
+	}
+
+	.navbar-light .navbar-nav .nav-link {
+		color: #fff!important;
+	}
+
+	/* Carousel */
+
+	.carousel {
+		height: 100%;
+	}
+
+	.carousel-inner {
+		height: 90%;
+		/*vertical-align: middle;*/
+		/*display: table-cell;*/
+	}
+
+	#head, #services, #portfolio, #prices, #contacts, #login {
+		/*display: block;*/
+	    vertical-align: middle;
+	    text-align: left;
+	    top: 45%;
+	}
+
+	#head {transform: translateY(40%);}
+	#services, #portfolio {transform: translateY(10%);}
+	#prices {transform: translateY(5%);}
+	#contacts, #login {transform: translateY(60%);}
+
+	.carousel-indicators .active {
+		border-bottom: 1px solid #fff;
+		background-color: transparent;
+	}
+
+	.carousel-indicators {
+		position: inherit;
+		margin-right: 0;
+	}
+
+	.carousel-indicators li {
+		width: 100px;
+		text-indent: 0;
+		text-align: center;
+		height: 40px;
+		background-color: transparent;
+	}
+
+	/* Head */
+	
+	#head-1, #head-2 {
+		height:100%;
+	}
+
+	#head-3 {
+		vertical-align: middle;
+	    transform: translateY(120%);
+	    top: 45%;
+	}
+
+	/* Services */
+
+	.card {
+		background-color: rgba(0, 0, 0, 0.2);
+		border: transparent;
+		width: 100%!important;
+		text-align: center;
+		border-radius: 10px;
+		padding: 20px 0;
+		margin-bottom: 10px;
+	}
+
+	.card img {
+		border-radius: 10px;
+		width: 50px;
+		height: 50px;
+		margin: 10px 0 10px;
+		padding: 10px;
+	}
+
+	.card .btn {
+		margin-top: 10px;
+	}
+
+	#data img {background: rgba(254, 121, 21, 0.7);}
+	#analytics img {background: rgba(21, 132, 200, 0.7);}
+	#visual img {background: rgba(54, 162, 53, 0.7);}
+
+	#data {background-color: rgba(254, 121, 21, 0.2);}
+	#analytics {background-color: rgba(21, 132, 200, 0.2);}
+	#visual {background-color: rgba(54, 162, 53, 0.2);}
+
+	.card-body {
+		padding: 0;
+		opacity: 0.85;
+	}
+
+	.list-group-flush .list-group-item {
+		background-color: transparent;	
+		border-bottom: 1px solid;
+	}
+
+	.list-group-item {
+		padding: 0;
+		border: 0;
+		text-align: left;
+		margin: 0 20px 0 20px;
+	}
+
+	/* Portfolio */
+	#portfolio img {
+		width: 350px;
+		height: 250px;
+		margin: 0 0 20px 0;
+		border-radius: 10px;
+		opacity: 0.7;
+	}
+
+	.lg-backdrop {
+		background-color: transparent;
+	}
+
+	.lg-img-wrap img {
+		border-radius: 10px;
+	}
+
+	/*.lg-toolbar .lg-icon, .lg-actions .lg-next, .lg-actions .lg-prev {
+		border-radius: 10px;
+	}*/
+
+	/* Prices */
+	#free img {background: rgba(254, 121, 21, 0.7);}
+	#standart img {background: rgba(21, 132, 200, 0.7);}
+	#personal img {background: rgba(54, 162, 53, 0.7);}
+
+	#free {background-color: rgba(254, 121, 21, 0.2);}
+	#standart {background-color: rgba(21, 132, 200, 0.2);}
+	#personal {background-color: rgba(54, 162, 53, 0.2);}
+
+	/*#prices .card-title {
+		margin: 20px 0;
+	}*/
+
+	.img-thumbnail {
+		padding: 0;
+		border: 0;
+		opacity: 0.7;
+	}
+
+	#unsel {
+		color: #A0A0A0;
+	}
+
+	/* Contacts */
+	form {
+		background-color: rgba(0, 0, 0, 0.2);
+		border-radius: 10px;
+		padding: 20px;
+	}
+
+	/* Footer */
+	footer {
+		height: 3%;
+		text-align: center;
+	}
+}
+
+/* Portrait tablets and medium desktops */
+/* PC - 1024x600 1024x768 */
+/* Tablet - 1024x600 /1024x768/ */
+@media (min-width: 992px) and (max-width:1199px) {
+	h1 {font-size: 35px;} h2 { font-size: 20px;text-transform: uppercase;} h3 { font-size: 18px;}
+	h1, h2, h3 { font-weight: normal;}
+
+	.container {
+		height: 96%;
+	}
+
+	/* Navbar */
+	.bg-light{
+		background-color: transparent!important;
+		height: 7%;
+	}
+
+	.navbar-light .navbar-brand, .navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:active {
+		color: #fff;
+	}
+
+	.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+		color: #fff;
+	}
+
+	.navbar-light .navbar-nav .nav-link, .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:active {
+		color: #fff;
+	}
+
+	.navbar-light .navbar-nav .nav-link {
+		color: #fff!important;
+	}
+
+	/* Carousel */
+
+	.carousel {
+		height: 100%;
+	}
+
+	.carousel-inner {
+		height: 90%;
+		/*vertical-align: middle;*/
+		/*display: table-cell;*/
+	}
+
+	#head {transform: translateY(40%);}
+	#services, #portfolio {transform: translateY(10%);}
+	#prices {transform: translateY(5%);}
+	#contacts, #login {transform: translateY(60%);}
+
+	.carousel-indicators .active {
+		border-bottom: 1px solid #fff;
+		background-color: transparent;
+	}
+
+	.carousel-indicators {
+		position: inherit;
+		margin-right: 0;
+	}
+
+	.carousel-indicators li {
+		width: 100px;
+		text-indent: 0;
+		text-align: center;
+		height: 40px;
+		background-color: transparent;
+	}
+	
+	/* Head */
+	
+	#head-1, #head-2 {
+		height:100%;
+	}
+
+	#head-3 {
+		vertical-align: middle;
+	    transform: translateY(120%);
+	    top: 45%;
+	}
+
+	/* Services */
+
+	.card {
+		background-color: rgba(0, 0, 0, 0.2);
+		border: transparent;
+		width: 100%!important;
+		text-align: center;
+		border-radius: 10px;
+		padding: 20px 0;
+		margin-bottom: 10px;
+	}
+
+	.card img {
+		border-radius: 10px;
+		width: 50px;
+		height: 50px;
+		margin: 10px 0 10px;
+		padding: 10px;
+	}
+
+	.card .btn {
+		margin-top: 10px;
+	}
+
+	#data img {background: rgba(254, 121, 21, 0.7);}
+	#analytics img {background: rgba(21, 132, 200, 0.7);}
+	#visual img {background: rgba(54, 162, 53, 0.7);}
+
+	#data {background-color: rgba(254, 121, 21, 0.2);}
+	#analytics {background-color: rgba(21, 132, 200, 0.2);}
+	#visual {background-color: rgba(54, 162, 53, 0.2);}
+
+	.card-body {
+		padding: 0;
+		opacity: 0.85;
+	}
+
+	.list-group-flush .list-group-item {
+		background-color: transparent;	
+		border-bottom: 1px solid;
+	}
+
+	.list-group-item {
+		padding: 0;
+		border: 0;
+		text-align: left;
+		margin: 0 20px 0 20px;
+	}
+
+	/* Portfolio */
+	#portfolio img {
+		width: 300px;
+		height: 200px;
+		margin: 0 0 20px 0;
+		border-radius: 10px;
+		opacity: 0.7;
+	}
+
+	.lg-backdrop {
+		background-color: transparent;
+	}
+
+	.lg-img-wrap img {
+		border-radius: 10px;
+	}
+
+	/*.lg-toolbar .lg-icon, .lg-actions .lg-next, .lg-actions .lg-prev {
+		border-radius: 10px;
+	}*/
+
+	/* Prices */
+	#free img {background: rgba(254, 121, 21, 0.7);}
+	#standart img {background: rgba(21, 132, 200, 0.7);}
+	#personal img {background: rgba(54, 162, 53, 0.7);}
+
+	#free {background-color: rgba(254, 121, 21, 0.2);}
+	#standart {background-color: rgba(21, 132, 200, 0.2);}
+	#personal {background-color: rgba(54, 162, 53, 0.2);}
+
+	/*#prices .card-title {
+		margin: 20px 0;
+	}*/
+
+	.img-thumbnail {
+		padding: 0;
+		border: 0;
+		opacity: 0.7;
+	}
+
+	#unsel {
+		color: #A0A0A0;
+	}
+
+	/* Contacts */
+	form {
+		background-color: rgba(0, 0, 0, 0.2);
+		border-radius: 10px;
+		padding: 20px;
+	}
+
+	/* Footer */
+	footer {
+		height: 3%;
+		text-align: center;
+	}
+}
+
+/* 2 */
+/* Portrait tablets and small desktops */
+/* Tablet - 800x480 /960x600/ */
+@media (max-width:991px) {
+	h1 {font-size: 35px;} h2 { font-size: 20px;text-transform: uppercase;} h3 { font-size: 18px;}
+	h1, h2, h3 { font-weight: normal;}
+
+	/*.container {
+		height: 97%;
+	}*/
+
+	/* Navbar */
+	.bg-light{
+		background-color: transparent!important;
+	}
+
+	.navbar-light .navbar-brand, .navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:active {
+		color: #fff;
+	}
+
+	.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+		color: #fff;
+	}
+
+	.navbar-light .navbar-nav .nav-link, .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:active {
+		color: #fff;
+	}
+
+	.navbar-light .navbar-nav .nav-link {
+		color: #fff!important;
+	}
+
+	/* Carousel */
+
+	/*.carousel {
+		height: 97%;
+	}
+
+	.carousel-inner {
+		height: 95%;
+		vertical-align: middle;
+    	display: table-cell;
+    	}*/
+
+    	.carousel-indicators .active {
+    		border-bottom: 1px solid #fff;
+    		background-color: transparent;
+    	}
+
+    	.carousel-indicators {
+    		position: inherit;
+    		margin-right: 0;
+    	}
+
+    	.carousel-indicators li {
+    		width: 100px;
+    		text-indent: 0;
+    		text-align: center;
+    		height: 40px;
+    		background-color: transparent;
+    	}
+	
+		/* Head */
+		
+		/*#head-1, #head-2 {
+			height:100%;
+		}
+
+		#head-3 {
+			vertical-align: middle;
+		    transform: translateY(120%);
+		    top: 45%;
+		}*/
+	
+    	/* Services */
+
+    	.card {
+    		background-color: rgba(0, 0, 0, 0.2);
+    		border: transparent;
+    		width: 100%!important;
+    		text-align: center;
+    		border-radius: 10px;
+    		padding: 20px 0;
+    		margin-bottom: 10px;
+    	}
+
+    	.card img {
+    		border-radius: 10px;
+    		width: 50px;
+    		height: 50px;
+    		margin: 10px 0 10px;
+    		padding: 10px;
+    	}
+
+    	.card .btn {
+    		margin-top: 10px;
+    	}
+
+    	#data img {background: rgba(254, 121, 21, 0.7);}
+    	#analytics img {background: rgba(21, 132, 200, 0.7);}
+    	#visual img {background: rgba(54, 162, 53, 0.7);}
+
+    	#data {background-color: rgba(254, 121, 21, 0.2);}
+    	#analytics {background-color: rgba(21, 132, 200, 0.2);}
+    	#visual {background-color: rgba(54, 162, 53, 0.2);}
+
+    	.card-body {
+    		padding: 0;
+    		opacity: 0.85;
+    	}
+
+    	.list-group-flush .list-group-item {
+    		background-color: transparent;	
+    		border-bottom: 1px solid;
+    	}
+
+    	.list-group-item {
+    		padding: 0;
+    		border: 0;
+    		text-align: left;
+    		margin: 0 20px 0 20px;
+    	}
+
+    	/* Portfolio */
+    	#portfolio img {
+    		width: 300px;
+			height: 200px;
+    		margin: 0 0 20px 0;
+    		border-radius: 10px;
+    		opacity: 0.7;
+    	}
+
+    	.lg-backdrop {
+    		background-color: transparent;
+    	}
+
+    	.lg-img-wrap img {
+    		border-radius: 10px;
+    	}
+
+    	/*.lg-toolbar .lg-icon, .lg-actions .lg-next, .lg-actions .lg-prev {
+    		border-radius: 10px;
+    	}*/
+
+    	/* Prices */
+    	#free img {background: rgba(254, 121, 21, 0.7);}
+		#standart img {background: rgba(21, 132, 200, 0.7);}
+		#personal img {background: rgba(54, 162, 53, 0.7);}
+
+    	#free {background-color: rgba(254, 121, 21, 0.2);}
+    	#standart {background-color: rgba(21, 132, 200, 0.2);}
+    	#personal {background-color: rgba(54, 162, 53, 0.2);}
+
+    	/*#prices .card-title {
+    		margin: 20px 0;
+    	}*/
+
+    	.img-thumbnail {
+    		padding: 0;
+    		border: 0;
+    		opacity: 0.7;
+    	}
+
+    	#unsel {
+    		color: #A0A0A0;
+    	}
+
+    	/* Contacts */
+    	form {
+    		background-color: rgba(0, 0, 0, 0.2);
+    		border-radius: 10px;
+    		padding: 20px;
+    	}
+
+    	/* Footer */
+    	footer {
+    		/*height: 3%;*/
+    		text-align: center;
+    	}
+    }
+
+    /* Landscape phones and portrait tablets */
+    /* TV - 640x480 */
+    @media (min-width: 481px) and (max-width:767px) {
+    	/* Navbar */
+    	.bg-light{
+    		background-color: transparent!important;
+    	}
+
+    	.navbar-light .navbar-brand, .navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:active {
+    		color: #fff;
+    	}
+
+    	.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+    		color: #fff;
+    	}
+
+    	.navbar-light .navbar-nav .nav-link, .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:active {
+    		color: #fff;
+    	}
+
+    	.navbar-light .navbar-nav .nav-link {
+    		color: #fff!important;
+    	}
+    }
+
+
