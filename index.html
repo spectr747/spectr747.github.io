@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Symbios - data mining technologies</title>
   <meta name="description" content="Symbios — анализ и визуализация больших массивов данных: подготовка данных, аналитика, машинное обучение и интерактивные информационные панели.">
   <link rel="canonical" href="https://spectr747.github.io/">
-  <meta name="theme-color" content="#1f2353">
+  <meta name="theme-color" content="#22205a">
+  <meta name="color-scheme" content="dark light">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Symbios">
@@ -22,23 +23,34 @@
   <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
   <link rel="apple-touch-icon" href="img/logo/apple-touch-icon.png">
 
+  <!-- Тема ставится до отрисовки, чтобы страница не мигала: сохранённый выбор или настройка системы -->
+  <script>
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem('theme'); } catch (e) { /* хранилище недоступно */ }
+      if (theme !== 'light' && theme !== 'dark') {
+        theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      var root = document.documentElement;
+      root.dataset.theme = theme;
+      root.classList.add('js');
+    })();
+  </script>
   <link rel="preload" href="fonts/nunito-cyrillic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="vendor/bootstrap-5.3.8/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
-  <script src="vendor/bootstrap-5.3.8/bootstrap.bundle.min.js" defer></script>
   <script src="js/main.js" type="module"></script>
 </head>
 <body>
-  <svg xmlns="http://www.w3.org/2000/svg" class="d-none" aria-hidden="true">
+  <div class="preloader" aria-hidden="true">
+    <!-- логотип встроен в HTML, чтобы появился сразу, не дожидаясь загрузки файла -->
+    <img src="data:image/png;base64,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" width="30" height="30" alt="">
+  </div>
+  <svg xmlns="http://www.w3.org/2000/svg" class="sprite" aria-hidden="true">
     <symbol id="icon-check" viewBox="0 0 16 16">
       <path d="M2.5 8.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
     <symbol id="icon-times" viewBox="0 0 11 16">
       <path d="M1.5 3.5l8 9m0-9l-8 9" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
-    </symbol>
-    <symbol id="icon-sign-in" viewBox="0 0 16 16">
-      <path d="M10 1.5h3a1.5 1.5 0 0 1 1.5 1.5v10a1.5 1.5 0 0 1-1.5 1.5h-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      <path d="M1 6.25h5v-3l5 4.75-5 4.75v-3H1z" fill="currentColor"/>
     </symbol>
     <symbol id="icon-chevron" viewBox="0 0 16 16">
       <path d="M10.5 2.5L5 8l5.5 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -49,260 +61,269 @@
     <symbol id="icon-fullscreen" viewBox="0 0 16 16">
       <path d="M1.5 5.5v-4h4m5 0h4v4m0 5v4h-4m-5 0h-4v-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
+    <symbol id="icon-sun" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path d="M12 1.5v3m0 15v3M1.5 12h3m15 0h3M4.6 4.6l2.1 2.1m10.6 10.6 2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-moon" viewBox="0 0 24 24">
+      <path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+    </symbol>
   </svg>
 
-  <div class="preloader" aria-hidden="true">
-    <!-- логотип встроен в HTML, чтобы появился сразу, не дожидаясь загрузки файла -->
-    <img src="data:image/png;base64,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" width="30" height="30" alt="">
-  </div>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
 
-  <a class="skip-link visually-hidden-focusable" href="#main">Перейти к содержимому</a>
-
-  <div class="container page">
-    <header class="navbar navbar-expand-lg site-header">
-      <a class="navbar-brand" href="#home"><span role="img" aria-label="Symbios"><img src="img/logo/symbios-90.png" width="30" height="30" class="d-inline-block align-top" alt="">ymbios</span></a>
-      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#site-nav"
-              aria-controls="site-nav" aria-expanded="false" aria-label="Меню">
-        <span></span><span></span><span></span>
-      </button>
-
-      <nav class="collapse navbar-collapse" id="site-nav" aria-label="Разделы сайта">
-        <ul class="navbar-nav ms-auto site-nav">
-          <li class="nav-item"><a class="nav-link active" href="#home" aria-current="page">Главная</a></li>
-          <li class="nav-item"><a class="nav-link" href="#services">Услуги</a></li>
-          <li class="nav-item"><a class="nav-link" href="#portfolio">Портфолио</a></li>
-          <li class="nav-item"><a class="nav-link" href="#prices">Стоимость</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contacts">Контакты</a></li>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="logo" href="#home"><span role="img" aria-label="Symbios"><img src="img/logo/symbios-90.png" width="30" height="30" alt="">ymbios</span></a>
+      <nav class="site-nav" id="site-nav" aria-label="Разделы сайта">
+        <ul class="nav-list">
+          <li><a class="nav-link" href="#services">Услуги</a></li>
+          <li><a class="nav-link" href="#portfolio">Портфолио</a></li>
+          <li><a class="nav-link" href="#prices">Стоимость</a></li>
+          <li><a class="nav-link" href="#contacts">Контакты</a></li>
           <!-- Вход скрыт флагом FEATURES.login в js/main.js, см. README -->
-          <li class="nav-item dropdown" data-feature="login" hidden>
-            <button class="btn login-toggle dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <svg class="icon icon-sign-in" aria-hidden="true"><use href="#icon-sign-in"/></svg>
-              <span class="visually-hidden">Личный кабинет</span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="nav-link" href="#login">Вход</a></li>
-              <li><a class="nav-link" href="#login">Регистрация</a></li>
-            </ul>
-          </li>
+          <li data-feature="login" hidden><a class="nav-link" href="#login">Вход</a></li>
         </ul>
       </nav>
-    </header>
+      <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Светлая тема" title="Светлая тема">
+        <svg class="icon icon-sun" aria-hidden="true"><use href="#icon-sun"/></svg>
+        <svg class="icon icon-moon" aria-hidden="true"><use href="#icon-moon"/></svg>
+      </button>
+      <a class="btn btn-sm header-cta" href="#contacts">Обсудить проект</a>
+      <button class="icon-btn nav-toggle" type="button" data-nav-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
 
-    <main id="main" class="site-main">
-      <div id="main-carousel" class="carousel slide">
-        <div class="carousel-inner">
-
-          <section class="carousel-item active" data-section="home" aria-labelledby="home-title" tabindex="-1">
-            <div class="row section-body">
-              <div class="col-md-6 hero" data-animation="bounce-in-left">
-                <h1 id="home-title">Symbios</h1>
-                <p class="hero-tagline">анализ и визуализация <br>больших массивов данных</p>
-              </div>
-              <div class="col-md-6" data-animation="bounce-in-right">
-                <div class="row">
-                  <div class="col-md-10 offset-md-1">
-                    <div class="before-after" data-before-after>
-                      <picture>
-                        <source srcset="img/elements/screen-1.webp" type="image/webp">
-                        <img src="img/elements/screen-1.png" width="701" height="562" fetchpriority="high"
-                             alt="Интерактивный дашборд: результат визуализации данных">
-                      </picture>
-                      <div class="before-after-reveal">
-                        <picture>
-                          <source srcset="img/elements/screen-2.webp" type="image/webp">
-                          <img src="img/elements/screen-2.png" width="701" height="562"
-                               alt="Исходные данные: таблица с сырыми записями">
-                        </picture>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+  <main id="main" tabindex="-1">
+    <section class="hero" id="home" aria-labelledby="home-title">
+      <div class="wrap hero-inner">
+        <div class="hero-text" data-reveal>
+          <p class="eyebrow">Data mining · Analytics · BI</p>
+          <h1 id="home-title">Symbios</h1>
+          <p class="lead">анализ и визуализация <br>больших массивов данных</p>
+          <div class="actions">
+            <a class="btn" href="#contacts">Обсудить проект</a>
+            <a class="btn btn-ghost" href="#portfolio">Смотреть работы</a>
+          </div>
+        </div>
+        <div class="hero-media" data-reveal>
+          <div class="before-after" data-before-after>
+            <picture>
+              <source srcset="img/elements/screen-1.webp" type="image/webp">
+              <img src="img/elements/screen-1.png" width="701" height="562" fetchpriority="high"
+                   alt="Интерактивный дашборд: результат визуализации данных">
+            </picture>
+            <div class="before-after-reveal">
+              <picture>
+                <source srcset="img/elements/screen-2.webp" type="image/webp">
+                <img src="img/elements/screen-2.png" width="701" height="562"
+                     alt="Исходные данные: таблица с сырыми записями">
+              </picture>
             </div>
-          </section>
-
-          <section class="carousel-item" data-section="services" aria-labelledby="services-title" tabindex="-1">
-            <h2 id="services-title" class="visually-hidden">Услуги</h2>
-            <div class="row section-body">
-              <div class="col-md-4">
-                <article class="card card--orange">
-                  <img src="img/elements/data.png" class="card-icon" width="30" height="30" alt="" loading="lazy">
-                  <div class="card-body"><h3 class="card-title h5">Подготовка данных</h3></div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Предварительное исследование и оценка качества имеющихся исходных данных</li>
-                    <li class="list-group-item">Определение ключевых информативных признаков, удовлетворяющих проектным задачам</li>
-                    <li class="list-group-item">Организация процесса сбора данных из существующих источников</li>
-                  </ul>
-                </article>
-              </div>
-              <div class="col-md-4">
-                <article class="card card--blue">
-                  <img src="img/elements/analytics.png" class="card-icon" width="30" height="30" alt="" loading="lazy">
-                  <div class="card-body"><h3 class="card-title h5">Аналитика</h3></div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Описание набора данных и признаков</li>
-                    <li class="list-group-item">Первичный статистический и визуальный анализ признаков</li>
-                    <li class="list-group-item">Выявление закономерностей, «инсайтов», особенностей данных</li>
-                    <li class="list-group-item">Предобработка данных, создание новых признаков</li>
-                    <li class="list-group-item">Тестирование моделей обучения, настройка кросс-валидации</li>
-                    <li class="list-group-item">Подбор гиперпараметров, построение кривых валидации и обучения</li>
-                    <li class="list-group-item">Прогноз для тестовой и отложенной выборки</li>
-                    <li class="list-group-item">Оценка лучшей модели с описанием выбранной метрики</li>
-                    <li class="list-group-item">Ансамблирование лучших моделей</li>
-                  </ul>
-                </article>
-              </div>
-              <div class="col-md-4">
-                <article class="card card--green">
-                  <img src="img/elements/visual.png" class="card-icon" width="30" height="30" alt="" loading="lazy">
-                  <div class="card-body"><h3 class="card-title h5">Визуализация</h3></div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Разработка информационных панелей для мониторинга событий в режиме реального времени</li>
-                    <li class="list-group-item">Разработка интерактивных информационных панелей визуализации архивных данных</li>
-                    <li class="list-group-item">Разработка интерактивных информационных панелей визуализации данных прогнозных математических моделей</li>
-                  </ul>
-                </article>
-              </div>
-            </div>
-          </section>
-
-          <section class="carousel-item" data-section="portfolio" aria-labelledby="portfolio-title" tabindex="-1">
-            <h2 id="portfolio-title" class="visually-hidden">Портфолио</h2>
-            <ul class="section-body gallery" id="portfolio-gallery">
-              <li><a href="img/portfolio/20.jpg" data-webp="img/portfolio/20.webp" data-title="Netsec" data-caption="Визуализация логов сетевого трафика системы обнаружения вторжений.">
-                <picture><source srcset="img/portfolio/thumbs/20.webp" type="image/webp"><img src="img/portfolio/thumbs/20.jpg" width="700" height="438" loading="lazy" decoding="async" alt="Netsec: визуализация логов сетевого трафика системы обнаружения вторжений"></picture>
-              </a></li>
-              <li><a href="img/portfolio/12.jpg" data-webp="img/portfolio/12.webp" data-title="Minfin" data-caption="Визуализация данных консолидированных бюджетов регионов Российской Федерации.">
-                <picture><source srcset="img/portfolio/thumbs/12.webp" type="image/webp"><img src="img/portfolio/thumbs/12.jpg" width="700" height="438" loading="lazy" decoding="async" alt="Minfin: визуализация данных консолидированных бюджетов регионов Российской Федерации"></picture>
-              </a></li>
-              <li><a href="img/portfolio/13.jpg" data-webp="img/portfolio/13.webp" data-title="Impex" data-caption="Визуализация товарооборота Российской Федерации со странами мира.">
-                <picture><source srcset="img/portfolio/thumbs/13.webp" type="image/webp"><img src="img/portfolio/thumbs/13.jpg" width="700" height="438" loading="lazy" decoding="async" alt="Impex: визуализация товарооборота Российской Федерации со странами мира"></picture>
-              </a></li>
-              <li><a href="img/portfolio/18.jpg" data-webp="img/portfolio/18.webp" data-title="Zemas" data-caption="Визуализация результатов кластерного анализа сетевого трафика.">
-                <picture><source srcset="img/portfolio/thumbs/18.webp" type="image/webp"><img src="img/portfolio/thumbs/18.jpg" width="700" height="438" loading="lazy" decoding="async" alt="Zemas: визуализация результатов кластерного анализа сетевого трафика"></picture>
-              </a></li>
-              <li><a href="img/portfolio/15.jpg" data-webp="img/portfolio/15.webp" data-title="Budget" data-caption="Визуализация открытых данных динамики изменения бюджета Кабардино-Балкарской Республики.">
-                <picture><source srcset="img/portfolio/thumbs/15.webp" type="image/webp"><img src="img/portfolio/thumbs/15.jpg" width="700" height="438" loading="lazy" decoding="async" alt="Budget: визуализация открытых данных динамики изменения бюджета Кабардино-Балкарской Республики"></picture>
-              </a></li>
-              <li><a href="img/portfolio/16.jpg" data-webp="img/portfolio/16.webp" data-title="SKUD" data-caption="Визуализация данных системы контроля и управления доступом.">
-                <picture><source srcset="img/portfolio/thumbs/16.webp" type="image/webp"><img src="img/portfolio/thumbs/16.jpg" width="700" height="438" loading="lazy" decoding="async" alt="SKUD: визуализация данных системы контроля и управления доступом"></picture>
-              </a></li>
-            </ul>
-          </section>
-
-          <section class="carousel-item" data-section="prices" aria-labelledby="prices-title" tabindex="-1">
-            <h2 id="prices-title" class="visually-hidden">Стоимость</h2>
-            <div class="row section-body">
-              <div class="col-md-4">
-                <article class="card card--orange">
-                  <img src="img/elements/gift.png" class="card-icon" width="30" height="30" alt="" loading="lazy">
-                  <div class="card-body"><h3 class="card-title h5">Бесплатно</h3></div>
-                  <ul class="list-group list-group-flush plan">
-                    <li class="list-group-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Исследование процессов, разработка рекомендаций для повышения эффективности</li>
-                    <li class="list-group-item is-excluded"><svg class="icon icon-no" role="img" aria-label="Не входит"><use href="#icon-times"/></svg> Преобразование форматов данных</li>
-                    <li class="list-group-item is-excluded"><svg class="icon icon-no" role="img" aria-label="Не входит"><use href="#icon-times"/></svg> Разработка модели взаимосвязанных данных</li>
-                    <li class="list-group-item is-excluded"><svg class="icon icon-no" role="img" aria-label="Не входит"><use href="#icon-times"/></svg> Разработка информационной панели для визуализации данных</li>
-                    <li class="list-group-item is-excluded"><svg class="icon icon-no" role="img" aria-label="Не входит"><use href="#icon-times"/></svg> Разработка информационной панели для визуализации периодических данных</li>
-                    <li class="list-group-item is-excluded"><svg class="icon icon-no" role="img" aria-label="Не входит"><use href="#icon-times"/></svg> Разработка математической модели для анализа данных</li>
-                    <li class="list-group-item is-excluded"><svg class="icon icon-no" role="img" aria-label="Не входит"><use href="#icon-times"/></svg> Разработка информационной панели для анализа и визуализации прогнозных значений данных</li>
-                    <li class="list-group-item is-excluded"><svg class="icon icon-no" role="img" aria-label="Не входит"><use href="#icon-times"/></svg> Технологическое сопровождение</li>
-                    <li class="list-group-item is-excluded"><svg class="icon icon-no" role="img" aria-label="Не входит"><use href="#icon-times"/></svg> Обучение персонала</li>
-                  </ul>
-                  <div class="card-body"><a class="btn btn-success" href="#contacts">Заказать</a></div>
-                </article>
-              </div>
-              <div class="col-md-4">
-                <article class="card card--blue">
-                  <img src="img/elements/star.png" class="card-icon" width="30" height="30" alt="" loading="lazy">
-                  <div class="card-body"><h3 class="card-title h5">Стандарт</h3></div>
-                  <ul class="list-group list-group-flush plan">
-                    <li class="list-group-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Исследование процессов, разработка рекомендаций для повышения эффективности</li>
-                    <li class="list-group-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Преобразование форматов данных</li>
-                    <li class="list-group-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Разработка модели взаимосвязанных данных</li>
-                    <li class="list-group-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Разработка информационной панели для визуализации данных</li>
-                    <li class="list-group-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Разработка информационной панели для визуализации периодических данных</li>
-                    <li class="list-group-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Разработка математической модели для анализа данных</li>
-                    <li class="list-group-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Разработка информационной панели для анализа и визуализации прогнозных значений данных</li>
-                    <li class="list-group-item is-excluded"><svg class="icon icon-no" role="img" aria-label="Не входит"><use href="#icon-times"/></svg> Технологическое сопровождение</li>
-                    <li class="list-group-item is-excluded"><svg class="icon icon-no" role="img" aria-label="Не входит"><use href="#icon-times"/></svg> Обучение персонала</li>
-                  </ul>
-                  <div class="card-body"><a class="btn btn-success" href="#contacts">Заказать</a></div>
-                </article>
-              </div>
-              <div class="col-md-4">
-                <article class="card card--green">
-                  <img src="img/elements/crown.png" class="card-icon" width="30" height="30" alt="" loading="lazy">
-                  <div class="card-body"><h3 class="card-title h5">Персонально</h3></div>
-                  <ul class="list-group list-group-flush plan">
-                    <li class="list-group-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Исследование процессов, разработка рекомендаций для повышения эффективности</li>
-                    <li class="list-group-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Преобразование форматов данных</li>
-                    <li class="list-group-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Разработка модели взаимосвязанных данных</li>
-                    <li class="list-group-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Разработка информационной панели для визуализации данных</li>
-                    <li class="list-group-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Разработка информационной панели для визуализации периодических данных</li>
-                    <li class="list-group-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Разработка математической модели для анализа данных</li>
-                    <li class="list-group-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Разработка информационной панели для анализа и визуализации прогнозных значений данных</li>
-                    <li class="list-group-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Технологическое сопровождение</li>
-                    <li class="list-group-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Обучение персонала</li>
-                  </ul>
-                  <div class="card-body"><a class="btn btn-success" href="#contacts">Заказать</a></div>
-                </article>
-              </div>
-            </div>
-          </section>
-
-          <section class="carousel-item" data-section="contacts" aria-labelledby="contacts-title" tabindex="-1">
-            <h2 id="contacts-title" class="visually-hidden">Контакты</h2>
-            <div class="row justify-content-center section-body">
-              <div class="col-md-5">
-                <form class="panel-form" action="https://formspree.io/f/xpppneyq" method="post" data-contact-form>
-                  <div class="mb-3">
-                    <label class="form-label" for="contact-email">Ваш email</label>
-                    <input type="email" class="form-control" id="contact-email" name="email" placeholder="name@example.com" autocomplete="email" required>
-                  </div>
-                  <div class="mb-3">
-                    <label class="form-label" for="contact-message">Описание задачи</label>
-                    <textarea class="form-control" id="contact-message" name="message" rows="3" required></textarea>
-                  </div>
-                  <input type="text" name="_gotcha" class="d-none" tabindex="-1" autocomplete="off" aria-hidden="true">
-                  <button type="submit" class="btn btn-success">Отправить</button>
-                  <p class="form-status" role="status" aria-live="polite"></p>
-                </form>
-              </div>
-            </div>
-          </section>
-
-          <!-- Вход скрыт флагом FEATURES.login в js/main.js: бэкенда авторизации нет, см. README -->
-          <section class="carousel-item" data-section="login" aria-labelledby="login-title" tabindex="-1" data-feature="login" hidden>
-            <h2 id="login-title" class="visually-hidden">Вход</h2>
-            <div class="row justify-content-center section-body">
-              <div class="col-md-4">
-                <form class="panel-form px-4 py-3" data-login-form>
-                  <div class="mb-3">
-                    <label class="form-label" for="login-email">Email</label>
-                    <input type="email" class="form-control" id="login-email" name="email" placeholder="email@example.com" autocomplete="username" required>
-                  </div>
-                  <div class="mb-3">
-                    <label class="form-label" for="login-password">Пароль</label>
-                    <input type="password" class="form-control" id="login-password" name="password" placeholder="Password" autocomplete="current-password" required>
-                  </div>
-                  <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="login-remember" name="remember">
-                    <label class="form-check-label" for="login-remember">Запомнить</label>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Вход</button>
-                </form>
-                <a href="#login">Регистрация</a>
-                <a href="#login">Забыл пароль</a>
-              </div>
-            </div>
-          </section>
-
+          </div>
+          <p class="hero-hint">Потяните слайдер: исходные данные и результат</p>
         </div>
       </div>
-    </main>
-  </div>
+    </section>
 
-  <footer class="site-footer"><span data-current-year>2026</span> © Symbios</footer>
+    <section class="section" id="services" aria-labelledby="services-title">
+      <div class="wrap">
+        <p class="eyebrow">Что мы делаем</p>
+        <h2 id="services-title">Услуги</h2>
+        <div class="grid">
+            <article class="card service card--orange" data-reveal>
+              <span class="card-icon"><img src="img/elements/data.png" width="30" height="30" alt="" loading="lazy"></span>
+              <h3 class="card-title">Подготовка данных</h3>
+              <ul class="service-list">
+                <li>Предварительное исследование и оценка качества имеющихся исходных данных</li>
+                <li>Определение ключевых информативных признаков, удовлетворяющих проектным задачам</li>
+                <li>Организация процесса сбора данных из существующих источников</li>
+              </ul>
+            </article>
+            <article class="card service card--blue" data-reveal>
+              <span class="card-icon"><img src="img/elements/analytics.png" width="30" height="30" alt="" loading="lazy"></span>
+              <h3 class="card-title">Аналитика</h3>
+              <ul class="service-list">
+                <li>Описание набора данных и признаков</li>
+                <li>Первичный статистический и визуальный анализ признаков</li>
+                <li>Выявление закономерностей, «инсайтов», особенностей данных</li>
+                <li>Предобработка данных, создание новых признаков</li>
+                <li>Тестирование моделей обучения, настройка кросс-валидации</li>
+                <li>Подбор гиперпараметров, построение кривых валидации и обучения</li>
+                <li>Прогноз для тестовой и отложенной выборки</li>
+                <li>Оценка лучшей модели с описанием выбранной метрики</li>
+                <li>Ансамблирование лучших моделей</li>
+              </ul>
+            </article>
+            <article class="card service card--green" data-reveal>
+              <span class="card-icon"><img src="img/elements/visual.png" width="30" height="30" alt="" loading="lazy"></span>
+              <h3 class="card-title">Визуализация</h3>
+              <ul class="service-list">
+                <li>Разработка информационных панелей для мониторинга событий в режиме реального времени</li>
+                <li>Разработка интерактивных информационных панелей визуализации архивных данных</li>
+                <li>Разработка интерактивных информационных панелей визуализации данных прогнозных математических моделей</li>
+              </ul>
+            </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="portfolio" aria-labelledby="portfolio-title">
+      <div class="wrap">
+        <p class="eyebrow">Проекты</p>
+        <h2 id="portfolio-title">Портфолио</h2>
+        <ul class="works" id="portfolio-gallery">
+          <li class="work" data-reveal>
+            <a class="work-link" href="img/portfolio/20.jpg" data-webp="img/portfolio/20.webp" data-title="Netsec" data-caption="Визуализация логов сетевого трафика системы обнаружения вторжений.">
+              <picture><source srcset="img/portfolio/thumbs/20.webp" type="image/webp"><img src="img/portfolio/thumbs/20.jpg" width="700" height="438" class="work-img" loading="lazy" decoding="async" alt=""></picture>
+              <span class="work-body"><span class="work-title">Netsec</span><span class="work-text">Визуализация логов сетевого трафика системы обнаружения вторжений.</span></span>
+            </a>
+          </li>
+          <li class="work" data-reveal>
+            <a class="work-link" href="img/portfolio/12.jpg" data-webp="img/portfolio/12.webp" data-title="Minfin" data-caption="Визуализация данных консолидированных бюджетов регионов Российской Федерации.">
+              <picture><source srcset="img/portfolio/thumbs/12.webp" type="image/webp"><img src="img/portfolio/thumbs/12.jpg" width="700" height="438" class="work-img" loading="lazy" decoding="async" alt=""></picture>
+              <span class="work-body"><span class="work-title">Minfin</span><span class="work-text">Визуализация данных консолидированных бюджетов регионов Российской Федерации.</span></span>
+            </a>
+          </li>
+          <li class="work" data-reveal>
+            <a class="work-link" href="img/portfolio/13.jpg" data-webp="img/portfolio/13.webp" data-title="Impex" data-caption="Визуализация товарооборота Российской Федерации со странами мира.">
+              <picture><source srcset="img/portfolio/thumbs/13.webp" type="image/webp"><img src="img/portfolio/thumbs/13.jpg" width="700" height="438" class="work-img" loading="lazy" decoding="async" alt=""></picture>
+              <span class="work-body"><span class="work-title">Impex</span><span class="work-text">Визуализация товарооборота Российской Федерации со странами мира.</span></span>
+            </a>
+          </li>
+          <li class="work" data-reveal>
+            <a class="work-link" href="img/portfolio/18.jpg" data-webp="img/portfolio/18.webp" data-title="Zemas" data-caption="Визуализация результатов кластерного анализа сетевого трафика.">
+              <picture><source srcset="img/portfolio/thumbs/18.webp" type="image/webp"><img src="img/portfolio/thumbs/18.jpg" width="700" height="438" class="work-img" loading="lazy" decoding="async" alt=""></picture>
+              <span class="work-body"><span class="work-title">Zemas</span><span class="work-text">Визуализация результатов кластерного анализа сетевого трафика.</span></span>
+            </a>
+          </li>
+          <li class="work" data-reveal>
+            <a class="work-link" href="img/portfolio/15.jpg" data-webp="img/portfolio/15.webp" data-title="Budget" data-caption="Визуализация открытых данных динамики изменения бюджета Кабардино-Балкарской Республики.">
+              <picture><source srcset="img/portfolio/thumbs/15.webp" type="image/webp"><img src="img/portfolio/thumbs/15.jpg" width="700" height="438" class="work-img" loading="lazy" decoding="async" alt=""></picture>
+              <span class="work-body"><span class="work-title">Budget</span><span class="work-text">Визуализация открытых данных динамики изменения бюджета Кабардино-Балкарской Республики.</span></span>
+            </a>
+          </li>
+          <li class="work" data-reveal>
+            <a class="work-link" href="img/portfolio/16.jpg" data-webp="img/portfolio/16.webp" data-title="SKUD" data-caption="Визуализация данных системы контроля и управления доступом.">
+              <picture><source srcset="img/portfolio/thumbs/16.webp" type="image/webp"><img src="img/portfolio/thumbs/16.jpg" width="700" height="438" class="work-img" loading="lazy" decoding="async" alt=""></picture>
+              <span class="work-body"><span class="work-title">SKUD</span><span class="work-text">Визуализация данных системы контроля и управления доступом.</span></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="prices" aria-labelledby="prices-title">
+      <div class="wrap">
+        <p class="eyebrow">Тарифы</p>
+        <h2 id="prices-title">Стоимость</h2>
+        <div class="grid plans">
+            <article class="card plan card--orange" data-reveal>
+              <span class="card-icon"><img src="img/elements/gift.png" width="30" height="30" alt="" loading="lazy"></span>
+              <h3 class="card-title">Бесплатно</h3>
+              <p class="plan-sub">1 из 9 работ</p>
+              <ul class="plan-list">
+                <li class="plan-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Исследование процессов, разработка рекомендаций для повышения эффективности</li>
+                <li class="plan-item is-excluded"><svg class="icon icon-no" role="img" aria-label="Не входит"><use href="#icon-times"/></svg> Преобразование форматов данных</li>
+                <li class="plan-item is-excluded"><svg class="icon icon-no" role="img" aria-label="Не входит"><use href="#icon-times"/></svg> Разработка модели взаимосвязанных данных</li>
+                <li class="plan-item is-excluded"><svg class="icon icon-no" role="img" aria-label="Не входит"><use href="#icon-times"/></svg> Разработка информационной панели для визуализации данных</li>
+                <li class="plan-item is-excluded"><svg class="icon icon-no" role="img" aria-label="Не входит"><use href="#icon-times"/></svg> Разработка информационной панели для визуализации периодических данных</li>
+                <li class="plan-item is-excluded"><svg class="icon icon-no" role="img" aria-label="Не входит"><use href="#icon-times"/></svg> Разработка математической модели для анализа данных</li>
+                <li class="plan-item is-excluded"><svg class="icon icon-no" role="img" aria-label="Не входит"><use href="#icon-times"/></svg> Разработка информационной панели для анализа и визуализации прогнозных значений данных</li>
+                <li class="plan-item is-excluded"><svg class="icon icon-no" role="img" aria-label="Не входит"><use href="#icon-times"/></svg> Технологическое сопровождение</li>
+                <li class="plan-item is-excluded"><svg class="icon icon-no" role="img" aria-label="Не входит"><use href="#icon-times"/></svg> Обучение персонала</li>
+              </ul>
+              <a class="btn plan-btn" href="#contacts">Заказать</a>
+            </article>
+            <article class="card plan card--blue plan--featured" data-reveal>
+              <span class="badge">Популярный</span>
+              <span class="card-icon"><img src="img/elements/star.png" width="30" height="30" alt="" loading="lazy"></span>
+              <h3 class="card-title">Стандарт</h3>
+              <p class="plan-sub">7 из 9 работ</p>
+              <ul class="plan-list">
+                <li class="plan-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Исследование процессов, разработка рекомендаций для повышения эффективности</li>
+                <li class="plan-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Преобразование форматов данных</li>
+                <li class="plan-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Разработка модели взаимосвязанных данных</li>
+                <li class="plan-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Разработка информационной панели для визуализации данных</li>
+                <li class="plan-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Разработка информационной панели для визуализации периодических данных</li>
+                <li class="plan-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Разработка математической модели для анализа данных</li>
+                <li class="plan-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Разработка информационной панели для анализа и визуализации прогнозных значений данных</li>
+                <li class="plan-item is-excluded"><svg class="icon icon-no" role="img" aria-label="Не входит"><use href="#icon-times"/></svg> Технологическое сопровождение</li>
+                <li class="plan-item is-excluded"><svg class="icon icon-no" role="img" aria-label="Не входит"><use href="#icon-times"/></svg> Обучение персонала</li>
+              </ul>
+              <a class="btn plan-btn" href="#contacts">Заказать</a>
+            </article>
+            <article class="card plan card--green" data-reveal>
+              <span class="card-icon"><img src="img/elements/crown.png" width="30" height="30" alt="" loading="lazy"></span>
+              <h3 class="card-title">Персонально</h3>
+              <p class="plan-sub">9 из 9 работ</p>
+              <ul class="plan-list">
+                <li class="plan-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Исследование процессов, разработка рекомендаций для повышения эффективности</li>
+                <li class="plan-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Преобразование форматов данных</li>
+                <li class="plan-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Разработка модели взаимосвязанных данных</li>
+                <li class="plan-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Разработка информационной панели для визуализации данных</li>
+                <li class="plan-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Разработка информационной панели для визуализации периодических данных</li>
+                <li class="plan-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Разработка математической модели для анализа данных</li>
+                <li class="plan-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Разработка информационной панели для анализа и визуализации прогнозных значений данных</li>
+                <li class="plan-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Технологическое сопровождение</li>
+                <li class="plan-item"><svg class="icon icon-yes" role="img" aria-label="Входит"><use href="#icon-check"/></svg> Обучение персонала</li>
+              </ul>
+              <a class="btn plan-btn" href="#contacts">Заказать</a>
+            </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="contacts" aria-labelledby="contacts-title">
+      <div class="wrap contact">
+        <div data-reveal>
+          <p class="eyebrow">Контакты</p>
+          <h2 id="contacts-title">Расскажите о задаче</h2>
+          <p class="muted">Ответим и предложим, как подойти к вашим данным.</p>
+        </div>
+        <form class="card form" action="https://formspree.io/f/xpppneyq" method="post" data-contact-form data-reveal>
+          <label class="field">
+            <span class="field-label">Ваш email</span>
+            <input class="field-input" type="email" name="email" placeholder="name@example.com" autocomplete="email" required>
+          </label>
+          <label class="field">
+            <span class="field-label">Описание задачи</span>
+            <textarea class="field-input" name="message" rows="4" required></textarea>
+          </label>
+          <input type="text" name="_gotcha" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button type="submit" class="btn">Отправить</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- Вход скрыт флагом FEATURES.login в js/main.js: бэкенда авторизации нет, см. README -->
+    <section class="section" id="login" aria-labelledby="login-title" data-feature="login" hidden>
+      <div class="wrap contact">
+        <div>
+          <p class="eyebrow">Личный кабинет</p>
+          <h2 id="login-title">Вход</h2>
+          <p class="muted"><a href="#login">Регистрация</a> · <a href="#login">Забыл пароль</a></p>
+        </div>
+        <form class="card form" data-login-form>
+          <label class="field">
+            <span class="field-label">Email</span>
+            <input class="field-input" type="email" name="email" placeholder="email@example.com" autocomplete="username" required>
+          </label>
+          <label class="field">
+            <span class="field-label">Пароль</span>
+            <input class="field-input" type="password" name="password" autocomplete="current-password" required>
+          </label>
+          <label class="check"><input type="checkbox" name="remember"> Запомнить</label>
+          <button type="submit" class="btn">Вход</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="wrap"><span data-current-year>2026</span> © Symbios</div></footer>
 
   <dialog class="lightbox" id="lightbox" aria-labelledby="lightbox-title">
     <div class="lightbox-toolbar">
