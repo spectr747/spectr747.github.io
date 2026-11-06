@@ -95,7 +95,8 @@
   color-scheme: light;
 
   --bg: #f6f8fc;
-  --page-bg: #f6f8fc;
+  --grid-line: rgb(21 132 200 / 8%);
+  --page-bg: var(--grid), #f6f8fc;
   --text: var(--navy);
   --muted: #5b6782;
   --line: #e3e8f2;
@@ -112,7 +113,7 @@
   --field-text: var(--navy);
   --icon-tint: 100%;
   --heading-weight: 700;
-  --alt-bg: #fff;
+  --alt-bg: rgb(255 255 255 / 55%); /* полупрозрачный, чтобы сетка фона просвечивала */
   --footer-bg: var(--navy);
   --footer-text: #b7c2da;
   --shadow-card: 0 1px 2px rgb(20 33 61 / 4%), 0 12px 32px -16px rgb(20 33 61 / 18%);
@@ -1049,9 +1050,9 @@ h3 {
   background: url('../img/elements/background.webp') center / cover;
 }
 
-/* Сетка поверх картинки и затемнения снизу; сдвинута на высоту шапки,
-   чтобы линии совпадали с сеткой фона страницы */
-[data-theme='dark'] .hero::before {
+/* Сетка на первом экране (обе темы): поверх картинки и затемнения снизу;
+   сдвинута на высоту шапки, чтобы линии совпадали с сеткой фона страницы */
+.hero::before {
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -1070,7 +1071,8 @@ h3 {
   pointer-events: none;
 }
 
-[data-theme='dark'] .hero-inner {
+[data-theme='dark'] .hero-inner,
+[data-theme='light'] .hero-inner {
   position: relative;
   z-index: 2;
 }
@@ -1093,6 +1095,7 @@ h3 {
 /* Светлая: мягкие цветные пятна на первом экране, цветная полоса сверху у карточек услуг,
    тёмный «популярный» тариф и тёмный подвал */
 [data-theme='light'] .hero {
+  position: relative;
   background:
     radial-gradient(900px 500px at 85% 20%, rgb(21 132 200 / 12%), transparent 60%),
     radial-gradient(700px 400px at 0% 100%, rgb(254 121 21 / 10%), transparent 60%), #fff;
