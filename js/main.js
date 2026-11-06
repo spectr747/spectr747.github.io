@@ -1,7 +1,7 @@
 /**
  * Symbios: поведение страницы.
  * Подключается как <script type="module">: выполняется после разбора HTML,
- * после bootstrap.bundle.min.js (тоже defer), не создаёт глобальных переменных.
+ * не создаёт глобальных переменных. Тему до отрисовки ставит маленький скрипт в <head> index.html.
  */
 
 /**
@@ -23,83 +23,129 @@ function applyFeatureFlags() {
   });
 }
 
-/* Анимации появления (data-animation="bounce-in-left" и т. п.) */
-function animateSection(section) {
-  section.querySelectorAll('[data-animation]').forEach((el) => {
-    const className = `animate-${el.dataset.animation}`;
-    el.classList.remove(className);
-    void el.offsetWidth; // перезапуск анимации, если класс уже стоял
-    el.classList.add(className);
-    el.addEventListener('animationend', () => el.classList.remove(className), { once: true });
+/**
+ * Тема оформления: тёмная или светлая (атрибут data-theme у <html>).
+ * Выбор посетителя хранится в localStorage; пока он ничего не выбирал,
+ * тема следует настройке системы и меняется вместе с ней.
+ */
+const THEME_COLORS = { dark: '#22205a', light: '#f6f8fc' };
+
+function initTheme() {
+  const root = document.documentElement;
+  const button = document.querySelector('[data-theme-toggle]');
+  const meta = document.querySelector('meta[name="theme-color"]');
+  const media = window.matchMedia('(prefers-color-scheme: light)');
+
+  const apply = (theme) => {
+    root.dataset.theme = theme;
+    meta?.setAttribute('content', THEME_COLORS[theme]);
+    if (button) {
+      const label = theme === 'dark' ? 'Светлая тема' : 'Тёмная тема';
+      button.setAttribute('aria-label', label);
+      button.title = label;
+    }
+  };
+
+  const stored = () => {
+    try {
+      return localStorage.getItem('theme');
+    } catch {
+      return null;
+    }
+  };
+
+  apply(root.dataset.theme === 'light' ? 'light' : 'dark');
+
+  button?.addEventListener('click', () => {
+    const theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    apply(theme);
+    try {
+      localStorage.setItem('theme', theme);
+    } catch {
+      /* в приватном режиме хранилище бывает недоступно: тема просто не запомнится */
+    }
+  });
+
+  media.addEventListener('change', (event) => {
+    if (!stored()) apply(event.matches ? 'light' : 'dark');
   });
 }
 
-/**
- * Разделы — слайды карусели Bootstrap. Адрес раздела хранится в location.hash
- * (#services, #portfolio…): ссылки работают с клавиатуры, кнопка «Назад» переключает
- * раздел, на раздел можно дать ссылку. Имя раздела задаётся атрибутом data-section,
- * а не id: иначе браузер прокручивает к «якорю» карусель и страницу.
- */
-function initSections() {
-  const carouselEl = document.getElementById('main-carousel');
-  if (!carouselEl || !window.bootstrap) return;
+/* Меню на узких экранах: кнопка-бургер открывает список разделов */
+function initNav() {
+  const toggle = document.querySelector('[data-nav-toggle]');
+  const nav = document.getElementById('site-nav');
+  if (!toggle || !nav) return;
 
-  const sections = [...carouselEl.querySelectorAll('.carousel-item')];
-  const ids = sections.map((section) => section.dataset.section);
-  const navLinks = [...document.querySelectorAll('.site-nav .nav-link[href^="#"]')];
-  const indexFromHash = () => ids.indexOf(decodeURIComponent(location.hash.slice(1)));
+  const setOpen = (open) => {
+    nav.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+  };
 
-  const markNav = (id) => {
-    navLinks.forEach((link) => {
-      const isCurrent = link.hash === `#${id}`;
-      link.classList.toggle('active', isCurrent);
-      if (isCurrent) link.setAttribute('aria-current', 'page');
+  toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+  nav.addEventListener('click', (event) => {
+    if (event.target.closest('a')) setOpen(false);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && nav.classList.contains('is-open')) {
+      setOpen(false);
+      toggle.focus();
+    }
+  });
+  document.addEventListener('click', (event) => {
+    if (!event.target.closest('.site-header')) setOpen(false);
+  });
+}
+
+/* Подсветка в меню раздела, который сейчас на экране */
+function initScrollSpy() {
+  const links = [...document.querySelectorAll('.site-nav .nav-link[href^="#"]')];
+  const sections = links.map((link) => document.getElementById(link.hash.slice(1))).filter(Boolean);
+  if (!sections.length || !('IntersectionObserver' in window)) return;
+
+  const visible = new Set();
+  const mark = () => {
+    // Текущий раздел — самый верхний из пересекающих полосу посередине экрана
+    const current = sections.find((section) => visible.has(section));
+    links.forEach((link) => {
+      const isCurrent = Boolean(current) && link.hash === `#${current.id}`;
+      link.classList.toggle('is-active', isCurrent);
+      if (isCurrent) link.setAttribute('aria-current', 'location');
       else link.removeAttribute('aria-current');
     });
   };
 
-  // Открыть раздел из адреса сразу, без анимации перелистывания
-  const initial = Math.max(indexFromHash(), 0);
-  sections.forEach((section, i) => section.classList.toggle('active', i === initial));
-  markNav(ids[initial]);
-  animateSection(sections[initial]);
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) visible.add(entry.target);
+        else visible.delete(entry.target);
+      });
+      mark();
+    },
+    { rootMargin: '-45% 0px -50% 0px' },
+  );
+  sections.forEach((section) => observer.observe(section));
+}
 
-  const carousel = window.bootstrap.Carousel.getOrCreateInstance(carouselEl, {
-    interval: false,
-    ride: false,
-    touch: false,
-    wrap: true,
-  });
-
-  let moveFocus = false;
-
-  carouselEl.addEventListener('slide.bs.carousel', (event) => {
-    animateSection(event.relatedTarget);
-  });
-
-  carouselEl.addEventListener('slid.bs.carousel', (event) => {
-    const section = sections[event.to];
-    const id = ids[event.to];
-    markNav(id);
-    const hash = `#${id}`;
-    if (location.hash !== hash && !(event.to === 0 && !location.hash)) {
-      history.pushState(null, '', hash); // листание стрелками клавиатуры тоже попадает в историю
-    }
-    if (moveFocus) {
-      section.focus({ preventScroll: true });
-      moveFocus = false;
-    }
-  });
-
-  window.addEventListener('hashchange', () => {
-    // Пустой адрес — главная; чужие якоря (например, #main у ссылки «Перейти к содержимому») не трогаем
-    const index = location.hash ? indexFromHash() : 0;
-    if (index < 0) return;
-    const active = sections.findIndex((section) => section.classList.contains('active'));
-    if (index === active) return;
-    moveFocus = true;
-    carousel.to(index);
-  });
+/* Плавное появление блоков с атрибутом data-reveal, когда они попадают в экран */
+function initReveal() {
+  const items = document.querySelectorAll('[data-reveal]');
+  if (!('IntersectionObserver' in window)) {
+    items.forEach((el) => el.classList.add('is-visible'));
+    return;
+  }
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    },
+    { rootMargin: '0px 0px -8% 0px' },
+  );
+  items.forEach((el) => observer.observe(el));
 }
 
 /* Слайдер «до/после» (замена BeerSlider 1.0.3 без полифиллов) */
@@ -175,7 +221,7 @@ function initLightbox() {
     const item = items[current];
     source.srcset = item.dataset.webp || '';
     img.src = item.href;
-    img.alt = item.querySelector('img')?.alt || '';
+    img.alt = [item.dataset.title, item.dataset.caption].filter(Boolean).join(': ');
     title.textContent = item.dataset.title || '';
     text.textContent = item.dataset.caption || '';
     counter.textContent = `${current + 1} / ${items.length}`;
@@ -300,7 +346,10 @@ function hidePreloader() {
 
 hidePreloader();
 applyFeatureFlags();
-initSections();
+initTheme();
+initNav();
+initScrollSpy();
+initReveal();
 document.querySelectorAll('[data-before-after]').forEach(initBeforeAfter);
 initLightbox();
 document.querySelectorAll('[data-contact-form]').forEach(initContactForm);
