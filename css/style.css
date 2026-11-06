@@ -60,7 +60,13 @@
   color-scheme: dark;
 
   --bg: #22205a;
-  --page-bg: linear-gradient(180deg, #22205a 0%, #1a1d4a 40%, #2a1640 100%);
+
+  /* Сетка «как в дашборде» (из концепции B) поверх фирменного градиента */
+  --grid-line: rgb(31 182 255 / 7%);
+  --grid:
+    linear-gradient(var(--grid-line) 1px, transparent 1px) 0 0 / 44px 44px,
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 0 0 / 44px 44px;
+  --page-bg: var(--grid), linear-gradient(180deg, #22205a 0%, #1a1d4a 40%, #2a1640 100%);
   --text: #fff;
   --muted: rgb(255 255 255 / 75%);
   --line: rgb(255 255 255 / 14%);
@@ -1043,6 +1049,18 @@ h3 {
   background: url('../img/elements/background.webp') center / cover;
 }
 
+/* Сетка поверх картинки и затемнения снизу; сдвинута на высоту шапки,
+   чтобы линии совпадали с сеткой фона страницы */
+[data-theme='dark'] .hero::before {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  content: '';
+  background: var(--grid);
+  background-position: 0 calc(-1 * var(--header-h));
+  pointer-events: none;
+}
+
 [data-theme='dark'] .hero::after {
   position: absolute;
   inset: auto 0 0;
@@ -1054,7 +1072,7 @@ h3 {
 
 [data-theme='dark'] .hero-inner {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 [data-theme='dark'] .before-after {
