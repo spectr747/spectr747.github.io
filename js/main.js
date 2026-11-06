@@ -282,6 +282,23 @@ function setCurrentYear() {
   });
 }
 
+/* Прелоадер: убрать после события load, но не позже чем через 1 с */
+function hidePreloader() {
+  const preloader = document.querySelector('.preloader');
+  if (!preloader) return;
+  let hidden = false;
+  const hide = () => {
+    if (hidden) return;
+    hidden = true;
+    preloader.classList.add('is-hidden');
+    setTimeout(() => preloader.remove(), 400);
+  };
+  if (document.readyState === 'complete') hide();
+  else window.addEventListener('load', hide, { once: true });
+  setTimeout(hide, 1000);
+}
+
+hidePreloader();
 applyFeatureFlags();
 initSections();
 document.querySelectorAll('[data-before-after]').forEach(initBeforeAfter);
