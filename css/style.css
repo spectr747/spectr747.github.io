@@ -67,6 +67,17 @@ body {
   height: 100%;
 }
 
+/* Полосы прокрутки скрыты, прокрутка колесом, касанием и клавиатурой работает */
+html,
+.carousel-item {
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+.carousel-item::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   background-image: url('../img/elements/background.jpg');
   background-image: image-set(
@@ -351,6 +362,9 @@ h3,
 /* Слайдер «до/после» (по мотивам BeerSlider 1.0.3, © Pehaa, MIT) */
 .before-after {
   position: relative;
+  cursor: ew-resize;
+  touch-action: pan-y;
+  user-select: none;
   display: inline-block;
   max-width: 100%;
   overflow: hidden;
@@ -378,26 +392,16 @@ h3,
   max-width: none;
 }
 
+/* Ползунок для клавиатуры и скринридеров; мышь и касания обрабатывает js/main.js */
 .before-after-range {
   position: absolute;
-  top: 0;
-  left: -1px;
+  inset: 0;
   z-index: 2;
-  width: calc(100% + 2px);
+  width: 100%;
   height: 100%;
   margin: 0;
-  cursor: pointer;
   opacity: 0;
-  appearance: none;
-}
-
-.before-after-range::-webkit-slider-thumb {
-  height: 300vh;
-  appearance: none;
-}
-
-.before-after-range::-moz-range-thumb {
-  height: 300vh;
+  pointer-events: none;
 }
 
 .before-after-handle {
