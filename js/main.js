@@ -123,6 +123,23 @@ function initBeforeAfter(root) {
   };
   range.addEventListener('input', move);
 
+  // Перетаскивание мышью, пером и пальцем по всей площади слайдера
+  const setFromPointer = (event) => {
+    const rect = root.getBoundingClientRect();
+    const percent = ((event.clientX - rect.left) / rect.width) * 100;
+    range.value = String(Math.round(Math.min(100, Math.max(0, percent))));
+    move();
+  };
+  root.addEventListener('pointerdown', (event) => {
+    if (event.button !== 0) return;
+    root.setPointerCapture(event.pointerId);
+    setFromPointer(event);
+  });
+  root.addEventListener('pointermove', (event) => {
+    if (root.hasPointerCapture(event.pointerId)) setFromPointer(event);
+  });
+  root.addEventListener('dragstart', (event) => event.preventDefault());
+
   // Ширина «открываемой» картинки всегда равна ширине слайдера,
   // в том числе когда раздел был скрыт и стал видимым.
   new ResizeObserver(([entry]) => {
