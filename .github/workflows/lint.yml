@@ -1,0 +1,23 @@
+# Проверки кода на pull request. Деплой GitHub Pages этот workflow не трогает:
+# сайт по-прежнему публикуется из корня ветки main без сборки.
+name: Lint
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
