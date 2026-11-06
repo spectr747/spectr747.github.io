@@ -196,6 +196,50 @@ h3,
 
 /* 5. Components ------------------------------------------------------------- */
 
+/* Прелоадер: вращающийся логотип. Скрипт убирает его после загрузки страницы
+   (не дольше 1 с); если скрипт не сработал, CSS прячет его сам через 3 с. */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e0e0e0;
+  transition: opacity 0.3s;
+  animation: preloader-out 0.3s 3s forwards;
+}
+
+.preloader img {
+  animation: preloader-spin 1s infinite;
+}
+
+.preloader.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes preloader-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(360deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes preloader-out {
+  to {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
 /* Навигация */
 .site-nav .nav-item {
   margin: 0 3px;
@@ -724,6 +768,10 @@ h3,
 @media (prefers-reduced-motion: reduce) {
   .animate-bounce-in-left,
   .animate-bounce-in-right {
+    animation: none;
+  }
+
+  .preloader img {
     animation: none;
   }
 
